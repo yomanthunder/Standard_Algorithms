@@ -30,8 +30,46 @@ class LinkedList{
           }
           temp->next = newNode;
        }
-       void insertAtKthNode(int value,int k ){}
-       void deleteAtKthNode(int k){}
+       void insertAtKthIndex(int value,int k ){
+        Node* newNode = new Node();
+        newNode->data = value;
+         if (k <= 0) {
+            cout << "Invalid position!" <<endl;
+            return;
+        }
+        if(head==nullptr){
+            if(k==1){
+                newNode->next=nullptr;
+                head = newNode;
+            }
+            else {
+            cout << "Position out of bounds!" << endl;
+            delete newNode;
+        }
+        return;
+        }
+        if(k==1){
+            newNode->next=head;
+            head = newNode;
+        }
+        Node* temp = head;
+         int cnt = 1;  // Start counting from the first node
+
+        while (temp != nullptr && cnt <k-1) {
+            cnt++;
+            temp = temp->next;
+        }
+
+        if (temp == nullptr) {  // If `k` is out of bounds
+            cout << "Position out of bounds!" << endl;
+            delete newNode;
+            return;
+        }
+        // Insert the new node at the correct position
+        newNode->next = temp->next;
+        temp->next = newNode;
+       }
+       void deleteAtKthIndex(int k){}// impliment when you get time
        void printLinkedlist(){
            if(!head) cout<<"the linkedlist "<<endl;
            Node* temp = head;
@@ -41,7 +79,7 @@ class LinkedList{
            }
            cout<<"nullptr\n";
        }
-       
+
 };
 int main(){
     LinkedList* obj = new LinkedList;
@@ -53,5 +91,7 @@ int main(){
     obj->insertAtEnd(6);
     obj->insertAtEnd(7);
     obj->insertAtEnd(8);
+    obj->printLinkedlist();cout<<"\n";
+    obj->insertAtKthIndex(9,3);
     obj->printLinkedlist();
 }
