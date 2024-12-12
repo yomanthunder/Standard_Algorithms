@@ -123,6 +123,13 @@ public:
     }
 };
 
+// dynamic circular queue 
+class DyCircularQueue{
+    private:
+       
+    public:
+}
+
 int main()
 {
     int n;
